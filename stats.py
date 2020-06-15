@@ -102,7 +102,7 @@ font = ImageFont.load_default()
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
 font = ImageFont.truetype('Montserrat-Light.ttf', 12)
-font2 = ImageFont.truetype('fontawesome-webfont.ttf', 14)
+font2 = ImageFont.truetype('fontawesome-webfont.ttf', 13)
 font_icon_big = ImageFont.truetype('fontawesome-webfont.ttf', 20)
 font_text_big = ImageFont.truetype('Montserrat-Medium.ttf', 19)
 
@@ -119,7 +119,7 @@ while True:
     cmd = "free -m | awk 'NR==2{printf \"%.2f%%\", $3*100/$2 }'"
     MemUsage = subprocess.check_output(cmd, shell = True )
     # cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
-    cmd = "df -h | awk '$NF==\"/\"{printf \"%s\", $5}'"
+    cmd = 'echo $(df -h | awk \'$NF=="/"{printf "%s", $5}\')'
     Disk = subprocess.check_output(cmd, shell = True )
     cmd = "vcgencmd measure_temp | cut -d '=' -f 2 | head --bytes -1"
     Temperature = subprocess.check_output(cmd, shell = True )
